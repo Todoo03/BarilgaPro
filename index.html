@@ -377,12 +377,9 @@
         <label for="districtSelect">Дүүрэг сонгох</label>
         <select id="districtSelect" onchange="calculateDelivery()">
           <option value="0">-- Сонгох --</option>
-          <option value="5000">Баянгол дүүрэг</option>
-          <option value="5000">Чингэлтэй дүүрэг</option>
-          <option value="5000">Сүхбаатар дүүрэг</option>
-          <option value="6000">Баянзүрх дүүрэг</option>
-          <option value="6000">Хан-Уул дүүрэг</option>
-          <option value="7000">Сонгинохайрхан дүүрэг</option>
+          <option value="5000">Баянгол / Сүхбаатар / Чингэлтэй дүүрэг (0-5км)</option>
+          <option value="6000">Баянзүрх / Хан-Уул дүүрэг (5-10км)</option>
+          <option value="7000">Сонгинохайрхан дүүрэг (10+ км)</option>
         </select>
       </div>
       <div class="calc-result-box">
@@ -440,9 +437,9 @@
       <img id="modalImg" src="" alt="Бүтээгдэхүүн">
     </div>
     <div class="modal-right">
-      <h2 class="modal-title" id="modalTitle">Бүтээгдэхүүний нэр</h2>
+      <h2 class="modal-title" id="modalTitle">Бүтээгೇಶүүн</h2>
       <div class="modal-price" id="modalPrice">0 ₮ <span>/ ширхэг</span></div>
-      <p class="modal-desc" id="modalDesc">Бүтээгдэхүүний дэлгэрэнгүй тайлбар энд харагдана.</p>
+      <p class="modal-desc" id="modalDesc">Тайлбар</p>
       
       <div class="option-section" id="sizeSection">
         <span class="option-label">Хэмжээ сонгох</span>
@@ -482,69 +479,49 @@
     <div>
       <div class="footer-logo-name">BARILGA<span>PRO</span></div>
       <div class="footer-tagline">Чанарыг уриагаа болгоно</div>
-      <p class="footer-desc">Монголын барилгын материалын хамгийн шуурхай, найдвартай онлайн худалдааны платформ. Бид зөвхөн баталгаат чанартай бүтээгдэхүүнийг нийлүүлдэг.</p>
+      <p class="footer-desc">Монголын барилгын материалын хамгийн шуурхай, найдвартай онлайн худалдааны платформ.</p>
       <div class="footer-contact">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Холбоо барих утас: 80878936
-        </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Байршил: Улаанбаатар хот, Монгол улс
-        </div>
+        <div>📞 80878936</div>
+        <div>📍 Улаанбаатар хот</div>
       </div>
     </div>
     <div class="footer-col">
       <h4>Мэдээлэл</h4>
       <ul>
         <li><a href="#">Бидний тухай</a></li>
-        <li><a href="#">Шинэ нийтлэлүүд</a></li>
-        <li><a href="#">Үйлчилгээний журам</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Хэрэглэгчид</h4>
       <ul>
-        <li><a href="#">Захиалга хийх заавар</a></li>
         <li><a href="#">Хүргэлтийн нөхцөл</a></li>
-        <li><a href="#">Төлбөр төлөх аргууд</a></li>
-        <li><a href="#">Буцаалтын журам</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Олон нийтийн сүлжээ</h4>
+      <h4>Олон нийт</h4>
       <ul>
         <li><a href="#">Facebook хуудас</a></li>
-        <li><a href="#">Instagram суваг</a></li>
-        <li><a href="#">Имэйл: info@barilgapro.mn</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 BarilgaPro.mn — Бүх эрх хуулиар хамгаалагдсан болно.</span>
-    <div class="social-links">
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
-    </div>
+    <span>© 2026 BarilgaPro.mn</span>
   </div>
 </footer>
 
 <script>
-  // МАТЕРИАЛЫН МЭДЭЭЛЛИЙН САН (Одоо зөвхөн таны бодит хэмжээсүүд үлдсэн)
   const products = {
     aibo: {
       title: 'AIBO Шүршдэг будаг, цавуу арилгагч (Sticker Remover)',
       price: 10000,
       unit: 'ширхэг',
       img: 'AIBO_Sticker_Remover.png',
-      desc: 'Бүх төрлийн будаг болон наалдсан цавууг металл, шил, мод, цемент зэрэг гадаргууг гэмтээхгүйгээр хялбархан уусгаж арилгах зориулалттай мэргэжлийн шүршигч. Автомашин, гэр ахуй болон барилгын засварын ажилд өргөн хэрэглэгдэнэ.',
+      desc: 'Бүх төрлийн будаг болон наалдсан цавууг металл, шил, мод, цемент гадаргууг гэмтээхгүй арилгана.',
       specs: [
         { label: 'Хэмжээ', value: '500мл' },
-        { label: 'Брэнд', value: 'AIBO' },
-        { label: 'Зориулалт', value: 'Будаг, наалт, цавуу арилгах' },
-        { label: 'Ажиллагаа', value: 'Шүршиж уусгах' }
+        { label: 'Брэнд', value: 'AIBO' }
       ],
-      sizes: ['500мл'], // 1л болон 250мл-ийг устгав
+      sizes: ['500мл'],
       colors: null
     },
     siding: {
@@ -552,14 +529,12 @@
       price: 26000,
       unit: 'м²',
       img: 'Siding_Facade.png',
-      desc: 'Олон төрлийн загвар, өнгөний маш гоё сонголттой, цаг агаарын эрс тэрс нөхцөлд тэсвэртэй, барилгын гадна талыг орчин үеийн өнгө төрхтэй харагдуулах чанартай фасадны материал. Суурилуулахад маш хялбар бөгөөд дулаан хадгалалтад давхар дэмжлэг үзүүлнэ.',
+      desc: 'Олон төрлийн загвар, өнгөний маш гоё сонголттой хавтан.',
       specs: [
         { label: 'Үндсэн Хэмжээ', value: '3.8м × 38cm' },
-        { label: 'Талбай', value: '1.444 м²' },
-        { label: 'Материал', value: 'Өндөр чанарын PVC / Металл' },
-        { label: 'Тэсвэрлэлт', value: 'Наранд гандахгүй, UV хамгаалалттай' }
+        { label: 'Талбай', value: '1.444 м²' }
       ],
-      sizes: ['3.8м × 38cm'], // 3м × 20см-ийг устгав
+      sizes: ['3.8м × 38cm'],
       colors: [
         { name: 'Цагаан', hex: '#F5F5F5' },
         { name: 'Саарал', hex: '#9E9E9E' },
@@ -573,13 +548,13 @@
   let selectedSize = '';
   let selectedColor = '';
 
-  // ХҮРГЭЛТ БОДОХ ФУНКЦ
+  // ХҮРГЭЛТИЙН ТОГТМОЛ ЗАСВАРТАЙ ФУНКЦ
   function calculateDelivery() {
-    const cost = document.getElementById('districtSelect').value;
-    document.getElementById('deliveryCost').textContent = parseInt(cost).toLocaleString() + ' ₮';
+    const selectEl = document.getElementById('districtSelect');
+    const cost = parseInt(selectEl.value) || 0;
+    document.getElementById('deliveryCost').textContent = cost.toLocaleString() + ' ₮';
   }
 
-  // МОДАЛ ЦОНХ НЭЭХ
   function openProduct(key) {
     const prod = products[key];
     if (!prod) return;
@@ -591,7 +566,6 @@
     document.getElementById('modalDesc').textContent = prod.desc;
     document.getElementById('qtyInput').value = 1;
 
-    // Хэмжээний товчлууруудыг үүсгэх
     const sizeCont = document.getElementById('sizeContainer');
     sizeCont.innerHTML = '';
     if (prod.sizes && prod.sizes.length > 0) {
@@ -609,7 +583,6 @@
       selectedSize = '';
     }
 
-    // Өнгөний товчлууруудыг үүсгэх
     const colorCont = document.getElementById('colorContainer');
     colorCont.innerHTML = '';
     if (prod.colors && prod.colors.length > 0) {
@@ -634,7 +607,6 @@
       selectedColor = '';
     }
 
-    // Үзүүлэлтийн хүснэгт үүсгэх
     const specsCont = document.getElementById('modalSpecs');
     specsCont.innerHTML = '';
     prod.specs.forEach(sp => {
@@ -648,7 +620,6 @@
     document.getElementById('productModal').classList.add('active');
   }
 
-  // МОДАЛ ХААХ
   function closeProduct() {
     document.getElementById('productModal').classList.remove('active');
     currentProduct = null;
@@ -658,7 +629,6 @@
     if (e.target.id === 'productModal') closeProduct();
   }
 
-  // СОНГОЛТ ХИЙХ ФУНКЦҮҮД
   function selectSize(btn, val) {
     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
@@ -680,7 +650,6 @@
     updateTotal();
   }
 
-  // ҮНЭ ШИНЭЧЛЭХ БОЛОН WHATSAPP ЛИНК БЭЛДЭХ
   function updateTotal() {
     if (!currentProduct) return;
     const qty = parseInt(document.getElementById('qtyInput').value) || 1;
@@ -705,6 +674,5 @@
     document.getElementById('whatsAppBtn').href = `https://wa.me/97680878936?text=${encoded}`;
   }
 </script>
-
 </body>
 </html>
