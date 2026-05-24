@@ -20,7 +20,7 @@
     --border: #DDE0EA;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
   /* TOP BAR */
   .topbar {
@@ -90,305 +90,38 @@
   .nav-phone { margin-left: auto; color: white; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
   .nav-phone svg { width: 16px; height: 16px; color: var(--orange); }
 
-  /* PRODUCT CATALOG SECTION */
-  .catalog-container {
-    max-width: 1280px;
-    margin: 40px auto 80px;
-    padding: 0 24px;
-  }
-  .section-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 24px;
-    color: var(--navy);
-    margin-bottom: 24px;
-    text-transform: uppercase;
-    border-left: 4px solid var(--orange);
-    padding-left: 12px;
-  }
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .product-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-  .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(30,45,78,0.08);
-    border-color: rgba(244,123,32,0.3);
-  }
-  .product-img-box {
-    width: 100%;
-    height: 280px;
-    background: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 1px solid var(--gray-light);
-  }
-  .product-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .product-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .product-name {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .product-desc {
-    font-size: 13px;
-    color: var(--gray);
-    line-height: 1.5;
-    margin-bottom: 16px;
-    flex: 1;
-  }
-  .product-price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px dashed var(--border);
-  }
-  .product-price {
-    font-family: 'Oswald', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--orange);
-  }
-  .order-now-btn {
-    background: var(--navy);
-    color: white;
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: background 0.2s;
-  }
-  .order-now-btn:hover {
-    background: var(--orange);
-  }
-  .order-now-btn svg { width: 14px; height: 14px; }
+  /* BANNER */
+  .hero-banner { background: linear-gradient(135deg, #1A263F 0%, #111A2E 100%); color: white; position: relative; overflow: hidden; padding: 60px 0; }
+  .hero-banner::after { content: ''; position: absolute; right: -10%; top: -30%; width: 60%; height: 160%; background: radial-gradient(circle, rgba(244,123,32,0.15) 0%, transparent 70%); transform: rotate(-15deg); pointer-events: none; }
+  .hero-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .hero-text { max-width: 620px; position: relative; z-index: 2; }
+  .hero-tag { display: inline-block; background: rgba(244,123,32,0.15); color: var(--orange); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(244,123,32,0.3); }
+  .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 48px; font-weight: 700; line-height: 1.15; margin-bottom: 18px; letter-spacing: -0.5px; }
+  .hero-text h1 span { color: var(--orange); }
+  .hero-text p { font-size: 16px; color: #a4b0c9; line-height: 1.6; margin-bottom: 30px; font-weight: 300; }
+  .hero-features { display: flex; gap: 32px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
+  .hf-item { display: flex; align-items: center; gap: 12px; }
+  .hf-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--orange); }
+  .hf-icon svg { width: 20px; height: 20px; }
+  .hf-title { font-size: 13px; font-weight: 600; color: white; margin-bottom: 2px; }
+  .hf-desc { font-size: 11px; color: #8493b4; }
+  .hero-graphic { flex: 1; max-width: 480px; display: flex; justify-content: center; position: relative; }
+  .badge-3d { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 24px; border-radius: 20px; backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .b3d-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 14px; text-align: center; transition: transform 0.3s; }
+  .b3d-box:hover { transform: translateY(-5px); background: rgba(255,255,255,0.06); border-color: rgba(244,123,32,0.3); }
+  .b3d-icon { color: var(--orange); margin-bottom: 12px; }
+  .b3d-icon svg { width: 32px; height: 32px; }
+  .b3d-txt { font-size: 13px; font-weight: 500; color: #cbd5e1; }
 
-  /* FOOTER */
-  footer { background: var(--navy-dark); color: #8a95ae; padding: 48px 0 24px; margin-top: 0; }
-  .footer-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 24px;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px;
-  }
-  .footer-logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: white; margin-bottom: 4px; }
-  .footer-logo-name span { color: var(--orange); }
-  .footer-tagline { font-size: 11px; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px; }
-  .footer-desc { font-size: 13px; line-height: 1.75; margin-bottom: 20px; }
-  .footer-contact div { margin-bottom: 9px; display: flex; align-items: center; gap: 9px; font-size: 13px; }
-  .footer-contact svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
-  .footer-col h4 { color: white; font-weight: 700; font-size: 13px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.8px; }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a { color: #8a95ae; text-decoration: none; font-size: 13px; transition: color 0.2s; }
-  .footer-col a:hover { color: white; }
-  .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 20px 24px 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-  .social-links { display: flex; gap: 10px; }
-  .social-link { width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
-  .social-link:hover { background: var(--orange); }
-  .social-link svg { width: 16px; height: 16px; color: white; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .header-inner { padding: 0 16px; gap: 12px; }
-    .search-bar { display: none; }
-    .nav-inner { padding: 0 16px; }
-    .nav-links { display: none; }
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-  }
-</style>
-</head>
-<body>
-
-<div class="topbar">
-  🚚 <span>Улаанбаатарт 24 цагт хүргэнэ</span> &nbsp;|&nbsp; 📞 80878936 &nbsp;|&nbsp; Баталгаат барилгын материал
-</div>
-
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" rx="16" fill="#1E2D4E"/>
-        <rect x="44" y="4"  width="12" height="14" rx="3" fill="#F47B20"/>
-        <rect x="44" y="82" width="12" height="14" rx="3" fill="#F47B20"/>
-        <rect x="4"  y="44" width="14" height="12" rx="3" fill="#F47B20"/>
-        <rect x="82" y="44" width="14" height="12" rx="3" fill="#F47B20"/>
-        <rect x="26" y="36" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="50" y="36" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="36" y="51" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="20" y="51" width="12" height="11" rx="2" fill="#F47B20" opacity="0.6"/>
-        <rect x="60" y="51" width="16" height="11" rx="2" fill="#F47B20" opacity="0.6"/>
-        <path d="M35 68 L58 28 L70 52 Z" fill="white" opacity="0.85"/>
-      </svg>
-      <div>
-        <div class="logo-name">BARILGA<span>PRO</span></div>
-        <span class="logo-sub">Онлайн барилгын материал</span>
-      </div>
-    </a>
-
-    <div class="search-bar">
-      <input type="text" placeholder="Барилгын материал хайх...">
-      <button class="search-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="header-actions">
-      <a href="#" class="action-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span class="lbl">Нэвтрэх</span>
-      </a>
-      <a href="#" class="action-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span class="lbl">Хадгалсан</span>
-      </a>
-      <a href="#" class="action-btn">
-        <div class="cart-badge" id="cartCount">2</div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="lbl">Сагс</span>
-      </a>
-    </div>
-  </div>
-</header>
-
-<nav>
-  <div class="nav-inner">
-    <ul class="nav-links">
-      <li><a href="#">Нүүр</a></li>
-      <li><a href="#">Бараа</a></li>
-      <li><a href="#">Брэнд</a></li>
-      <li><a href="#">Нийтлэл</a></li>
-      <li><a href="#">Хүргэлт</a></li>
-      <li><a href="#">Бидний тухай</a></li>
-    </ul>
-    <div class="nav-phone">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      80878936
-    </div>
-  </div>
-</nav>
-
-<div class="catalog-container">
-  <h2 class="section-title">Манай бүтээгдэхүүнүүд</h2>
-  <div class="products-grid">
-
-    <div class="product-card">
-      <div class="product-img-box">
-        <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png" alt="AIBO Шүршдэг будаг, цавуу арилгагч" onerror="this.src='https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500'">
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">AIBO Шүршдэг будаг, цавуу арилгагч (Sticker Remover)</h3>
-        <p class="product-desc">Бүх төрлийн будаг болон наалдсан цавууг металл, шил зэрэг гадаргууг гэмтээхгүйгээр хялбархан уусгаж арилгах зориулалттай шүршигч.</p>
-        <div class="product-price-row">
-          <span class="product-price">10,000 ₮</span>
-          <a href="tel:80878936" class="order-now-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Захиалах
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img-box">
-        <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/Siding_Facade.png" alt="Барилгын гадна фасад siding" onerror="this.src='https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=500'">
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Барилгын гадна фасадны Сайдинг (Siding) хавтан</h3>
-        <p class="product-desc">Олон төрлийн загвар, өнгөний сонголттой, цаг агаарын эрс тэрс нөхцөлд тэсвэртэй, барилгын гадна танг гоёмсог харагдуулах чанартай фасадны материал.</p>
-        <div class="product-price-row">
-          <span class="product-price">26,000 ₮</span>
-          <a href="tel:80878936" class="order-now-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Захиалах
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo-name">BARILGA<span>PRO</span></div>
-      <div class="footer-tagline">Онлайн барилгын материалын дэлгүүр</div>
-      <p class="footer-desc">Монголын барилгын материалын найдвартай онлайн дэлгүүр. Баталгаат чанар, хурдан хүргэлт.</p>
-      <div class="footer-contact">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          80878936
-        </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Улаанбаатар хот
-        </div>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Мэдээлэл</h4>
-      <ul>
-        <li><a href="#">Бидний тухай</a></li>
-        <li><a href="#">Нийтлэл</a></li>
-        <li><a href="#">Үйлчилгээний нөхцөл</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Үйлчилгээ</h4>
-      <ul>
-        <li><a href="#">Захиалга шалгах</a></li>
-        <li><a href="#">Хүргэлтийн нөхцөл</a></li>
-        <li><a href="#">Төлбөрийн нөхцөл</a></li>
-        <li><a href="#">Буцаалт</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Холбоо барих</h4>
-      <ul>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">info@barilgapro.mn</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 BarilgaPro.mn — Бүх эрх хуулиар хамгаалагдсан</span>
-    <div class="social-links">
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+  /* DELIVERY CALCULATOR */
+  .calc-section { max-width: 1280px; margin: 40px auto 0; padding: 0 24px; }
+  .calc-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(30,45,78,0.04); display: flex; gap: 32px; align-items: center; }
+  .calc-info { max-width: 380px; }
+  .calc-info h3 { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--navy); margin-bottom: 8px; text-transform: uppercase; }
+  .calc-info p { font-size: 13.5px; color: var(--gray); line-height: 1.5; }
+  .calc-form { flex: 1; display: flex; gap: 16px; align-items: flex-end; background: #F8F9FA; padding: 20px; border-radius: 12px; border: 1px dashed var(--border); }
+  .form-group { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--navy-light); }
+  .form-group select { width: 100%; height: 44px; background: white; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; font-size: 13.5px; color: var(--text); outline: none; font-family: inherit; cursor: pointer; }
+  .form-group select:focus { border-color: var(--orange); }
+  .calc-result-box { min-width: 200px; height: 44px; background: var(--navy); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; padding
