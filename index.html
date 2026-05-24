@@ -1,970 +1,583 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BarilgaPro - Онлайн барилгын материалын дэлгүүр</title>
-
-<link rel="icon" type="image/png" href="logo.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-...
-  :root {
-    --orange: #F47B20;
-    --orange-dark: #D9660F;
-    --navy: #1E2D4E;
-    --navy-dark: #152038;
-    --navy-light: #2A3D65;
-    --bg: #F4F5F7;
-    --white: #FFFFFF;
-    --gray-light: #EEEEF2;
-    --gray: #8A8FA0;
-    --text: #1A1E2C;
-    --border: #DDE0EA;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
-
-  /* TOP BAR */
-  .topbar { background: var(--navy-dark); color: #9aa5be; font-size: 12px; padding: 7px 0; text-align: center; }
-  .topbar span { color: var(--orange); font-weight: 600; }
-
-  /* HEADER */
-  header { background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 16px rgba(30,45,78,0.10); }
-  .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 74px; }
-  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BarilgaPro - Онлайн барилгын материалын дэлгүүр</title>
   
-  /* ШИНЭ ЛОГОНЫ СТАЙЛ */
-  .logo-img { height: 50px; width: auto; object-fit: contain; }
+  <link rel="icon" type="image/png" href="logo.png">
   
-  .logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
-  .logo-name span { color: var(--orange); }
-  .logo-sub { font-size: 10px; color: var(--gray); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; display: block; }
-  .search-bar { flex: 1; display: flex; background: var(--gray-light); border-radius: 8px; overflow: hidden; border: 1.5px solid var(--border); transition: border-color 0.2s; }
-  .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(244,123,32,0.1); }
-  .search-bar input { flex: 1; border: none; background: transparent; padding: 0 16px; font-size: 14px; outline: none; font-family: 'DM Sans', sans-serif; }
-  .search-btn { background: var(--orange); border: none; padding: 0 22px; cursor: pointer; color: white; display: flex; align-items: center; transition: background 0.2s; }
-  .search-btn:hover { background: var(--orange-dark); }
-  .search-btn svg { width: 20px; height: 20px; }
-  .header-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-  .action-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 14px; border: none; background: transparent; cursor: pointer; border-radius: 8px; transition: background 0.2s; text-decoration: none; color: var(--text); position: relative; }
-  .action-btn:hover { background: var(--gray-light); }
-  .action-btn svg { width: 22px; height: 22px; color: var(--navy); }
-  .action-btn .lbl { font-size: 11px; font-weight: 500; color: var(--gray); }
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --orange: #F47B20;
+      --orange-dark: #D9660F;
+      --navy: #1E2D4E;
+      --navy-dark: #152038;
+      --navy-light: #2A3D65;
+      --bg: #F4F5F7;
+      --white: #FFFFFF;
+      --gray-light: #EEEEF2;
+      --gray: #8A8FA0;
+      --text: #1A1E2C;
+      --border: #DDE0EA;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
 
-  /* NAV */
-  nav { background: var(--navy); }
-  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; }
-  .nav-links { display: flex; align-items: center; list-style: none; }
-  .nav-links a { color: #c5cde0; text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 0 16px; height: 46px; display: flex; align-items: center; transition: color 0.2s, background 0.2s; white-space: nowrap; cursor: pointer; }
-  .nav-links a:hover { color: white; background: rgba(255,255,255,0.07); }
-  .nav-phone { margin-left: auto; color: white; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-  .nav-phone svg { width: 16px; height: 16px; color: var(--orange); }
+    /* TOP BAR */
+    .topbar { background: var(--navy-dark); color: #9aa5be; font-size: 12px; padding: 7px 0; text-align: center; }
+    .topbar span { color: var(--orange); font-weight: 600; }
 
-  /* CATALOG */
-  .catalog-container { max-width: 1280px; margin: 40px auto 60px; padding: 0 24px; }
-  .section-title { font-family: 'Oswald', sans-serif; font-size: 24px; color: var(--navy); margin-bottom: 24px; text-transform: uppercase; border-left: 4px solid var(--orange); padding-left: 12px; }
-  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    /* HEADER */
+    header { background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 16px rgba(30,45,78,0.10); }
+    .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 74px; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .logo-img { height: 50px; width: auto; object-fit: contain; }
+    .logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+    .logo-name span { color: var(--orange); }
+    .logo-sub { font-size: 10px; color: var(--gray); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; display: block; }
+    
+    .search-wrap { flex: 1; position: relative; }
+    .search-bar { width: 100%; display: flex; background: var(--gray-light); border-radius: 8px; overflow: hidden; border: 1.5px solid var(--border); transition: border-color 0.2s; }
+    .search-bar:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(244,123,32,0.1); }
+    .search-bar input { flex: 1; border: none; background: transparent; padding: 0 16px; font-size: 14px; outline: none; font-family: 'DM Sans', sans-serif; }
+    .search-btn { background: var(--orange); border: none; padding: 0 22px; cursor: pointer; color: white; display: flex; align-items: center; transition: background 0.2s; }
+    .search-btn:hover { background: var(--orange-dark); }
+    .search-btn svg { width: 20px; height: 20px; }
+    
+    .header-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .action-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 14px; border: none; background: transparent; cursor: pointer; border-radius: 8px; transition: background 0.2s; text-decoration: none; color: var(--text); position: relative; }
+    .action-btn:hover { background: var(--gray-light); }
+    .action-btn svg { width: 22px; height: 22px; color: var(--navy); }
+    .action-btn .lbl { font-size: 11px; font-weight: 500; color: var(--gray); }
 
-  .product-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; cursor: pointer; }
-  .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(30,45,78,0.12); border-color: rgba(244,123,32,0.4); }
-  .product-img-box { width: 100%; height: 260px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--gray-light); position: relative; }
-  .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-  .product-card:hover .product-img-box img { transform: scale(1.04); }
-  .view-badge { position: absolute; bottom: 10px; right: 10px; background: var(--navy); color: white; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.2s; display: flex; align-items: center; gap: 4px; }
-  .view-badge svg { width: 12px; height: 12px; }
-  .product-card:hover .view-badge { opacity: 1; }
-  .product-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-  .product-name { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
-  .product-desc { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 16px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .product-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--border); }
-  .product-price { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--orange); }
-  .card-btn { background: var(--navy); color: white; border: none; padding: 10px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
-  .card-btn:hover { background: var(--orange); }
-  .card-btn svg { width: 14px; height: 14px; }
+    /* NAV */
+    nav { background: var(--navy); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; }
+    .nav-links { display: flex; align-items: center; list-style: none; }
+    .nav-links a { color: #c5cde0; text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 0 16px; height: 46px; display: flex; align-items: center; transition: color 0.2s, background 0.2s; white-space: nowrap; cursor: pointer; }
+    .nav-links a:hover { color: white; background: rgba(255,255,255,0.07); }
+    .nav-phone { margin-left: auto; color: white; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .nav-phone svg { width: 16px; height: 16px; color: var(--orange); }
 
-  /* ===== MODAL ===== */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(10,15,30,0.7); z-index: 999;
-    display: flex; align-items: center; justify-content: center; padding: 20px;
-    opacity: 0; pointer-events: none; transition: opacity 0.25s;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
+    /* CATALOG */
+    .catalog-container { max-width: 1280px; margin: 40px auto 60px; padding: 0 24px; }
+    .section-title { font-family: 'Oswald', sans-serif; font-size: 24px; color: var(--navy); margin-bottom: 24px; text-transform: uppercase; border-left: 4px solid var(--orange); padding-left: 12px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
 
-  .modal {
-    background: var(--white); border-radius: 16px; max-width: 720px; width: 100%;
-    max-height: 90vh; overflow-y: auto; position: relative;
-    transform: translateY(30px) scale(0.97); transition: transform 0.25s;
-    box-shadow: 0 24px 80px rgba(10,15,30,0.35);
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .product-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; cursor: pointer; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(30,45,78,0.12); border-color: rgba(244,123,32,0.4); }
+    .product-img-box { width: 100%; height: 260px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--gray-light); position: relative; }
+    .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .product-card:hover .product-img-box img { transform: scale(1.04); }
+    .view-badge { position: absolute; bottom: 10px; right: 10px; background: var(--navy); color: white; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.2s; display: flex; align-items: center; gap: 4px; }
+    .view-badge svg { width: 12px; height: 12px; }
+    .product-card:hover .view-badge { opacity: 1; }
+    .product-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .product-name { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+    .product-desc { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 16px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--border); }
+    .product-price { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--orange); }
+    .card-btn { background: var(--navy); color: white; border: none; padding: 10px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
+    .card-btn:hover { background: var(--orange); }
+    .card-btn svg { width: 14px; height: 14px; }
 
-  .modal-close {
-    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
-    background: var(--gray-light); border: none; border-radius: 50%; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; z-index: 10;
-    transition: background 0.2s;
-  }
-  .modal-close:hover { background: #e0e0e8; }
-  .modal-close svg { width: 18px; height: 18px; color: var(--navy); }
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(10,15,30,0.7); z-index: 999; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: var(--white); border-radius: 16px; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(30px) scale(0.97); transition: transform 0.25s; box-shadow: 0 24px 80px rgba(10,15,30,0.35); }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: var(--gray-light); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s; }
+    .modal-close:hover { background: #e0e0e8; }
+    .modal-close svg { width: 18px; height: 18px; color: var(--navy); }
+    .modal-img { width: 100%; height: 320px; object-fit: cover; border-radius: 16px 16px 0 0; display: block; }
+    .modal-body { padding: 28px 32px 32px; }
+    .modal-title { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.25; }
+    .modal-price { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 700; color: var(--orange); margin-bottom: 20px; }
+    .modal-desc { font-size: 15px; color: #555; line-height: 1.75; margin-bottom: 24px; }
 
-  .modal-img { width: 100%; height: 320px; object-fit: cover; border-radius: 16px 16px 0 0; display: block; }
+    .modal-specs { margin-bottom: 28px; }
+    .modal-specs h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .spec-item { background: var(--gray-light); border-radius: 8px; padding: 12px 16px; }
+    .spec-label { font-size: 11px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .spec-value { font-size: 14px; font-weight: 600; color: var(--navy); }
 
-  .modal-body { padding: 28px 32px 32px; }
-  .modal-title { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.25; }
-  .modal-price { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 700; color: var(--orange); margin-bottom: 20px; }
-  .modal-desc { font-size: 15px; color: #555; line-height: 1.75; margin-bottom: 24px; }
+    .modal-sizes { margin-bottom: 28px; }
+    .modal-sizes h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
+    .size-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .size-btn { padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 8px; background: white; font-size: 13px; font-weight: 600; color: var(--navy); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+    .size-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .size-btn.selected { border-color: var(--orange); background: var(--orange); color: white; }
 
-  /* Specs table */
-  .modal-specs { margin-bottom: 28px; }
-  .modal-specs h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
-  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .spec-item { background: var(--gray-light); border-radius: 8px; padding: 12px 16px; }
-  .spec-label { font-size: 11px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .spec-value { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .modal-colors { margin-bottom: 28px; }
+    .modal-colors h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
+    .color-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .color-btn { padding: 7px 14px; border: 1.5px solid var(--border); border-radius: 8px; background: white; font-size: 13px; font-weight: 500; color: var(--navy); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+    .color-btn:hover { border-color: var(--orange); }
+    .color-btn.selected { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(244,123,32,0.3); }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1); }
 
-  /* Size selector */
-  .modal-sizes { margin-bottom: 28px; }
-  .modal-sizes h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
-  .size-options { display: flex; flex-wrap: wrap; gap: 8px; }
-  .size-btn {
-    padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 8px;
-    background: white; font-size: 13px; font-weight: 600; color: var(--navy);
-    cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-  }
-  .size-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .size-btn.selected { border-color: var(--orange); background: var(--orange); color: white; }
+    .modal-qty { margin-bottom: 28px; }
+    .modal-qty h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
+    .qty-row { display: flex; align-items: center; gap: 0; width: fit-content; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .qty-btn { width: 40px; height: 40px; border: none; background: var(--gray-light); cursor: pointer; font-size: 20px; font-weight: 700; color: var(--navy); transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
+    .qty-btn:hover { background: #e0e0e8; }
+    .qty-num { width: 60px; text-align: center; font-size: 16px; font-weight: 700; color: var(--navy); border: none; border-left: 1.5px solid var(--border); border-right: 1.5px solid var(--border); background: white; outline: none; font-family: 'DM Sans', sans-serif; }
+    .qty-unit { margin-left: 10px; font-size: 13px; color: var(--gray); }
 
-  /* Color selector */
-  .modal-colors { margin-bottom: 28px; }
-  .modal-colors h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
-  .color-options { display: flex; flex-wrap: wrap; gap: 8px; }
-  .color-btn {
-    padding: 7px 14px; border: 1.5px solid var(--border); border-radius: 8px;
-    background: white; font-size: 13px; font-weight: 500; color: var(--navy);
-    cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .color-btn:hover { border-color: var(--orange); }
-  .color-btn.selected { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(244,123,32,0.3); }
-  .color-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1); }
+    .modal-total { background: var(--gray-light); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .total-label { font-size: 14px; color: var(--gray); font-weight: 500; }
+    .total-price { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--navy); }
 
-  /* Qty */
-  .modal-qty { margin-bottom: 28px; }
-  .modal-qty h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 12px; }
-  .qty-row { display: flex; align-items: center; gap: 0; width: fit-content; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .qty-btn { width: 40px; height: 40px; border: none; background: var(--gray-light); cursor: pointer; font-size: 20px; font-weight: 700; color: var(--navy); transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
-  .qty-btn:hover { background: #e0e0e8; }
-  .qty-num { width: 60px; text-align: center; font-size: 16px; font-weight: 700; color: var(--navy); border: none; border-left: 1.5px solid var(--border); border-right: 1.5px solid var(--border); background: white; outline: none; font-family: 'DM Sans', sans-serif; }
-  .qty-unit { margin-left: 10px; font-size: 13px; color: var(--gray); }
+    .modal-actions { display: flex; gap: 12px; }
+    .btn-order { flex: 1; background: var(--orange); color: white; border: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+    .btn-order:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,123,32,0.35); }
+    .btn-order svg { width: 20px; height: 20px; }
+    .btn-whatsapp { background: #25D366; color: white; border: none; padding: 16px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .btn-whatsapp:hover { background: #1EB857; }
+    .btn-whatsapp svg { width: 20px; height: 20px; }
 
-  /* Total */
-  .modal-total { background: var(--gray-light); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .total-label { font-size: 14px; color: var(--gray); font-weight: 500; }
-  .total-price { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--navy); }
+    /* ABOUT SECTION */
+    .about-section { background: var(--navy); padding: 72px 24px; }
+    .about-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-tag { background: rgba(244,123,32,0.2); color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; display: inline-block; margin-bottom: 18px; }
+    .about-title { font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 700; color: white; line-height: 1.15; margin-bottom: 20px; }
+    .about-title span { color: var(--orange); }
+    .about-lead { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 32px; }
+    .about-points { display: flex; flex-direction: column; gap: 16px; }
+    .about-point { display: flex; gap: 14px; align-items: flex-start; }
+    .point-icon { width: 40px; height: 40px; background: rgba(244,123,32,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .point-icon svg { width: 20px; height: 20px; color: var(--orange); }
+    .point-text h4 { font-size: 15px; font-weight: 700; color: white; margin-bottom: 4px; }
+    .point-text p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; text-align: center; }
+    .stat-num { font-family: 'Oswald', sans-serif; font-size: 42px; font-weight: 700; color: var(--orange); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+    .about-cta { margin-top: 20px; }
+    .btn-call-about { background: var(--orange); color: white; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+    .btn-call-about:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,123,32,0.4); }
+    .btn-call-about svg { width: 18px; height: 18px; }
 
-  .modal-actions { display: flex; gap: 12px; }
-  .btn-order {
-    flex: 1; background: var(--orange); color: white; border: none;
-    padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    text-decoration: none;
-  }
-  .btn-order:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,123,32,0.35); }
-  .btn-order svg { width: 20px; height: 20px; }
-  .btn-whatsapp {
-    background: #25D366; color: white; border: none;
-    padding: 16px 20px; border-radius: 10px; font-size: 14px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-    display: flex; align-items: center; gap: 8px; text-decoration: none;
-  }
-  .btn-whatsapp:hover { background: #1EB857; }
-  .btn-whatsapp svg { width: 20px; height: 20px; }
+    /* FOOTER */
+    footer { background: var(--navy-dark); color: #8a95ae; padding: 48px 0 24px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    .footer-logo-img { height: 55px; width: auto; object-fit: contain; margin-bottom: 8px; }
+    .footer-logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: white; margin-bottom: 4px; }
+    .footer-logo-name span { color: var(--orange); }
+    .footer-tagline { font-size: 11px; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-desc { font-size: 13px; line-height: 1.75; margin-bottom: 20px; }
+    .footer-contact div { margin-bottom: 9px; display: flex; align-items: center; gap: 9px; font-size: 13px; }
+    .footer-contact svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
+    .footer-col h4 { color: white; font-weight: 700; font-size: 13px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { color: #8a95ae; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 20px 24px 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+    .social-links { display: flex; gap: 10px; }
+    .social-link { width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
+    .social-link:hover { background: var(--orange); }
+    .social-link svg { width: 16px; height: 16px; color: white; }
 
-  /* ABOUT SECTION */
-  .about-section { background: var(--navy); padding: 72px 24px; }
-  .about-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-  .about-tag { background: rgba(244,123,32,0.2); color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; display: inline-block; margin-bottom: 18px; }
-  .about-title { font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 700; color: white; line-height: 1.15; margin-bottom: 20px; }
-  .about-title span { color: var(--orange); }
-  .about-lead { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 32px; }
-  .about-points { display: flex; flex-direction: column; gap: 16px; }
-  .about-point { display: flex; gap: 14px; align-items: flex-start; }
-  .point-icon { width: 40px; height: 40px; background: rgba(244,123,32,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .point-icon svg { width: 20px; height: 20px; color: var(--orange); }
-  .point-text h4 { font-size: 15px; font-weight: 700; color: white; margin-bottom: 4px; }
-  .point-text p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+    /* SEARCH DROPDOWN */
+    .search-dropdown { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--white); border-radius: 10px; border: 1.5px solid var(--border); box-shadow: 0 8px 32px rgba(30,45,78,0.14); z-index: 999; overflow: hidden; display: none; }
+    .search-dropdown.show { display: block; }
+    .search-result-item { display: flex; align-items: center; gap: 14px; padding: 12px 16px; cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border); }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--gray-light); }
+    .search-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: var(--gray-light); flex-shrink: 0; }
+    .search-info { flex: 1; min-width: 0; }
+    .search-name { font-size: 14px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-price { font-size: 13px; color: var(--orange); font-weight: 700; margin-top: 2px; }
+    .search-empty { padding: 20px 16px; text-align: center; color: var(--gray); font-size: 14px; }
+    .search-highlight { color: var(--orange); }
 
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; text-align: center; }
-  .stat-num { font-family: 'Oswald', sans-serif; font-size: 42px; font-weight: 700; color: var(--orange); line-height: 1; margin-bottom: 6px; }
-  .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.4; }
-  .about-cta { margin-top: 20px; }
-  .btn-call-about {
-    background: var(--orange); color: white; text-decoration: none;
-    padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 700;
-    display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s;
-  }
-  .btn-call-about:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,123,32,0.4); }
-  .btn-call-about svg { width: 18px; height: 18px; }
+    /* DELIVERY CALCULATOR */
+    .delivery-section { background: var(--white); border-top: 2px solid var(--border); padding: 56px 24px; }
+    .delivery-inner { max-width: 860px; margin: 0 auto; }
+    .delivery-title { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 6px; border-left: 4px solid var(--orange); padding-left: 12px; }
+    .delivery-sub { font-size: 14px; color: var(--gray); margin-left: 16px; margin-bottom: 32px; }
+    .vehicle-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .vehicle-tab { border: 2px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.2s; background: var(--gray-light); text-align: center; }
+    .vehicle-tab:hover { border-color: var(--orange); background: rgba(244,123,32,0.04); }
+    .vehicle-tab.active { border-color: var(--orange); background: rgba(244,123,32,0.07); box-shadow: 0 4px 16px rgba(244,123,32,0.15); }
+    .vtab-icon { font-size: 36px; margin-bottom: 8px; }
+    .vtab-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .vtab-desc { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
+    .vtab-price { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--orange); }
+    
+    .d-section-label { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .zone-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .zone-opt { border: 2px solid var(--border); border-radius: 10px; padding: 16px; cursor: pointer; transition: all 0.2s; background: var(--white); text-align: center; }
+    .zone-opt:hover { border-color: var(--orange); }
+    .zone-opt.active { border-color: var(--orange); background: rgba(244,123,32,0.06); }
+    .zo-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .zo-sub { font-size: 12px; color: var(--gray); margin-bottom: 8px; }
+    .zo-price { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--orange); }
+    
+    .d-amount-row { margin-bottom: 20px; }
+    .d-field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray); margin-bottom: 8px; }
+    .d-field input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--gray-light); outline: none; transition: border-color 0.2s; }
+    .d-field input:focus { border-color: var(--orange); background: white; box-shadow: 0 0 0 3px rgba(244,123,32,0.1); }
+    
+    .delivery-result { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); border-radius: 12px; padding: 24px 28px; display: none; grid-template-columns: 1fr 1fr 1fr; align-items: center; }
+    .delivery-result.show { display: grid; }
+    .d-result-item { text-align: center; padding: 0 16px; }
+    .d-result-item + .d-result-item { border-left: 1px solid rgba(255,255,255,0.15); }
+    .d-result-label { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+    .d-result-value { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 700; color: white; line-height: 1; }
+    .d-result-value.orange { color: var(--orange); }
+    .d-result-note { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; }
 
-  /* FOOTER */
-  footer { background: var(--navy-dark); color: #8a95ae; padding: 48px 0 24px; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-  .footer-logo-img { height: 55px; width: auto; object-fit: contain; margin-bottom: 8px; }
-  .footer-logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: white; margin-bottom: 4px; }
-  .footer-logo-name span { color: var(--orange); }
-  .footer-tagline { font-size: 11px; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px; }
-  .footer-desc { font-size: 13px; line-height: 1.75; margin-bottom: 20px; }
-  .footer-contact div { margin-bottom: 9px; display: flex; align-items: center; gap: 9px; font-size: 13px; }
-  .footer-contact svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
-  .footer-col h4 { color: white; font-weight: 700; font-size: 13px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.8px; }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a { color: #8a95ae; text-decoration: none; font-size: 13px; transition: color 0.2s; }
-  .footer-col a:hover { color: white; }
-  .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 20px 24px 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-  .social-links { display: flex; gap: 10px; }
-  .social-link { width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
-  .social-link:hover { background: var(--orange); }
-  .social-link svg { width: 16px; height: 16px; color: white; }
-
-  /* SEARCH DROPDOWN */
-  .search-wrap { flex: 1; position: relative; }
-  .search-bar { width: 100%; }
-  .search-dropdown {
-    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-    background: var(--white); border-radius: 10px; border: 1.5px solid var(--border);
-    box-shadow: 0 8px 32px rgba(30,45,78,0.14); z-index: 999;
-    overflow: hidden; display: none;
-  }
-  .search-dropdown.show { display: block; }
-  .search-result-item {
-    display: flex; align-items: center; gap: 14px; padding: 12px 16px;
-    cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border);
-  }
-  .search-result-item:last-child { border-bottom: none; }
-  .search-result-item:hover { background: var(--gray-light); }
-  .search-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: var(--gray-light); flex-shrink: 0; }
-  .search-info { flex: 1; min-width: 0; }
-  .search-name { font-size: 14px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .search-price { font-size: 13px; color: var(--orange); font-weight: 700; margin-top: 2px; }
-  .search-empty { padding: 20px 16px; text-align: center; color: var(--gray); font-size: 14px; }
-  .search-highlight { color: var(--orange); }
-
-  /* DELIVERY CALCULATOR */
-  .delivery-section { background: var(--white); border-top: 2px solid var(--border); padding: 56px 24px; }
-  .delivery-inner { max-width: 860px; margin: 0 auto; }
-  .delivery-title { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 6px; border-left: 4px solid var(--orange); padding-left: 12px; }
-  .delivery-sub { font-size: 14px; color: var(--gray); margin-left: 16px; margin-bottom: 32px; }
-
-  /* Vehicle tabs */
-  .vehicle-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-  .vehicle-tab {
-    border: 2px solid var(--border); border-radius: 12px; padding: 20px;
-    cursor: pointer; transition: all 0.2s; background: var(--gray-light); text-align: center;
-  }
-  .vehicle-tab:hover { border-color: var(--orange); background: rgba(244,123,32,0.04); }
-  .vehicle-tab.active { border-color: var(--orange); background: rgba(244,123,32,0.07); box-shadow: 0 4px 16px rgba(244,123,32,0.15); }
-  .vtab-icon { font-size: 36px; margin-bottom: 8px; }
-  .vtab-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .vtab-desc { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
-  .vtab-price { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--orange); }
-
-  /* Zone selector */
-  .d-section-label { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .zone-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-  .zone-opt {
-    border: 2px solid var(--border); border-radius: 10px; padding: 16px;
-    cursor: pointer; transition: all 0.2s; background: var(--white); text-align: center;
-  }
-  .zone-opt:hover { border-color: var(--orange); }
-  .zone-opt.active { border-color: var(--orange); background: rgba(244,123,32,0.06); }
-  .zo-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .zo-sub { font-size: 12px; color: var(--gray); margin-bottom: 8px; }
-  .zo-price { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: var(--orange); }
-
-  /* Amount field */
-  .d-amount-row { margin-bottom: 20px; }
-  .d-field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray); margin-bottom: 8px; }
-  .d-field input {
-    width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px;
-    font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text);
-    background: var(--gray-light); outline: none; transition: border-color 0.2s;
-  }
-  .d-field input:focus { border-color: var(--orange); background: white; box-shadow: 0 0 0 3px rgba(244,123,32,0.1); }
-
-  /* Result */
-  .delivery-result {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-    border-radius: 12px; padding: 24px 28px;
-    display: none; grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-  }
-  .delivery-result.show { display: grid; }
-  .d-result-item { text-align: center; padding: 0 16px; }
-  .d-result-item + .d-result-item { border-left: 1px solid rgba(255,255,255,0.15); }
-  .d-result-label { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
-  .d-result-value { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 700; color: white; line-height: 1; }
-  .d-result-value.orange { color: var(--orange); }
-  .d-result-note { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; }
-
-  @media (max-width: 768px) {
-    .vehicle-tabs { grid-template-columns: 1fr; }
-    .zone-selector { grid-template-columns: 1fr; }
-    .delivery-result { grid-template-columns: 1fr; }
-    .d-result-item + .d-result-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; margin-top: 4px; }
-    .header-inner { padding: 0 16px; gap: 12px; }
-    .search-bar { display: none; }
-    .nav-links { display: none; }
-    .about-inner { grid-template-columns: 1fr; gap: 40px; }
-    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-    .modal-body { padding: 20px; }
-    .specs-grid { grid-template-columns: 1fr; }
-    .modal-actions { flex-direction: column; }
-  }
-</style>
+    @media (max-width: 768px) {
+      .vehicle-tabs { grid-template-columns: 1fr; }
+      .zone-selector { grid-template-columns: 1fr; }
+      .delivery-result { grid-template-columns: 1fr; }
+      .d-result-item + .d-result-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; margin-top: 4px; }
+      .header-inner { padding: 0 16px; gap: 12px; }
+      .search-bar { display: none; }
+      .nav-links { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .modal-body { padding: 20px; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .modal-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  🚚 <span>Улаанбаатарт 24 цагт хүргэнэ</span> &nbsp;|&nbsp; 📞 80878936 &nbsp;|&nbsp; Баталгаат барилгын материал
-</div>
+  <div class="topbar">
+    🚚 <span>Улаанбаатарт 24 цагт хүргэнэ</span> &nbsp;|&nbsp; 📞 80878936 &nbsp;|&nbsp; Баталгаат барилгын материал
+  </div>
 
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <img src="logo.png" alt="BarilgaPro Лого" class="logo-img" onerror="this.src='https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png'; this.style.opacity='0.2';">
-      <div>
-        <div class="logo-name">BARILGA<span>PRO</span></div>
-        <span class="logo-sub">Онлайн барилгын материал</span>
-      </div>
-    </a>
-    <div class="search-wrap">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Барилгын материал хайх..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="handleSearch(this.value)">
-        <button class="search-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </button>
-      </div>
-      <div class="search-dropdown" id="searchDropdown"></div>
-    </div>
-    <div class="header-actions">
-      <a href="#" class="action-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span class="lbl">Нэвтрэх</span>
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="BarilgaPro Лого" class="logo-img" onerror="this.src='https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png'; this.style.opacity='0.2';">
+        <div>
+          <div class="logo-name">BARILGA<span>PRO</span></div>
+          <span class="logo-sub">Онлайн барилгын материал</span>
+        </div>
       </a>
-    </div>
-  </div>
-</header>
-
-<nav>
-  <div class="nav-inner">
-    <ul class="nav-links">
-      <li><a href="#">Нүүр</a></li>
-      <li><a href="#">Бараа</a></li>
-      <li><a href="#">Брэнд</a></li>
-      <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">Бидний тухай</a></li>
-      <li><a href="#">Хүргэлт</a></li>
-    </ul>
-    <div class="nav-phone">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      80878936
-    </div>
-  </div>
-</nav>
-
-<div class="catalog-container">
-  <h2 class="section-title">Манай бүтээгдэхүүнүүд</h2>
-  <div class="products-grid" id="productsGrid">
-
-    <div class="product-card" onclick="openModal('aibo')">
-      <div class="product-img-box">
-        <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png"
-             alt="AIBO Sticker Remover"
-             onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500'">
-        <div class="view-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
-          Дэлгэрэнгүй
-        </div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">AIBO Шүршдэг будаг, цавуу арилгагч</h3>
-        <p class="product-desc">Бүх төрлийн будаг болон наалдсан цавууг металл, шил зэрэг гадаргууг гэмтээхгүйгээр хялбархан арилгах шүршигч.</p>
-        <div class="product-price-row">
-          <span class="product-price">10,000 ₮</span>
-          <button class="card-btn" onclick="event.stopPropagation();openModal('aibo')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
-            Үзэх
+      <div class="search-wrap">
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Барилгын материал хайх..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="handleSearch(this.value)">
+          <button class="search-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
         </div>
+        <div class="search-dropdown" id="searchDropdown"></div>
       </div>
-    </div>
-
-    <div class="product-card" onclick="openModal('siding')">
-      <div class="product-img-box">
-        <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/Siding_Facade.png"
-             alt="Siding Facade"
-             onerror="this.src='https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=500'">
-        <div class="view-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
-          Дэлгэрэнгүй
-        </div>
-      </div>
-      <div class="product-info">
-        <h3 class="product-name">Барилгын гадна фасадны Сайдинг хавтан</h3>
-        <p class="product-desc">Олон төрлийн загвар, өнгөний сонголттой, цаг агаарын эрс тэрс нөхцөлд тэсвэртэй фасадны материал.</p>
-        <div class="product-price-row">
-          <span class="product-price">26,000 ₮</span>
-          <button class="card-btn" onclick="event.stopPropagation();openModal('siding')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
-            Үзэх
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-    <img id="modalImg" src="" alt="" class="modal-img">
-    <div class="modal-body">
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-price" id="modalPrice"></div>
-      <div class="modal-desc" id="modalDesc"></div>
-
-      <div class="modal-specs" id="modalSpecsWrap">
-        <h4>Үзүүлэлтүүд</h4>
-        <div class="specs-grid" id="modalSpecs"></div>
-      </div>
-
-      <div class="modal-sizes" id="modalSizesWrap">
-        <h4>Хэмжээ сонгох</h4>
-        <div class="size-options" id="modalSizes"></div>
-      </div>
-
-      <div class="modal-colors" id="modalColorsWrap">
-        <h4>Өнгө сонгох</h4>
-        <div class="color-options" id="modalColors"></div>
-      </div>
-
-      <div class="modal-qty">
-        <h4>Тоо ширхэг</h4>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="qty-row">
-            <button class="qty-btn" onclick="changeQty(-1)">−</button>
-            <input class="qty-num" id="qtyInput" type="number" value="1" min="1" oninput="updateTotal()">
-            <button class="qty-btn" onclick="changeQty(1)">+</button>
-          </div>
-          <span class="qty-unit" id="qtyUnit">ширхэг</span>
-        </div>
-      </div>
-
-      <div class="modal-total">
-        <span class="total-label">Нийт дүн</span>
-        <span class="total-price" id="modalTotal">10,000 ₮</span>
-      </div>
-
-      <div class="modal-actions">
-        <a href="tel:80878936" class="btn-order">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          80878936 Утсаар захиалах
-        </a>
-        <a id="whatsappBtn" href="https://wa.me/97680878936" target="_blank" class="btn-whatsapp">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp
+      <div class="header-actions">
+        <a href="#" class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="lbl">Нэвтрэх</span>
         </a>
       </div>
     </div>
-  </div>
-</div>
+  </header>
 
-<section class="delivery-section">
-  <div class="delivery-inner">
-    <div class="delivery-title">Хүргэлтийн тооцоолуур</div>
-    <div class="delivery-sub">Барааны овор хэмжээ болон хотын доторх зайнаас хамаарч хүргэлтийн төлбөр тооцогдоно</div>
-
-    <div class="vehicle-tabs" id="vehicleTabs">
-      <div class="vehicle-tab active" data-v="ubcab" onclick="selectVehicle('ubcab')">
-        <div class="vtab-icon">🚗</div>
-        <div class="vtab-name">UBCab / Жижиг, дунд машин</div>
-        <div class="vtab-desc">Суудлын машинд багтах ачаа</div>
-        <div class="vtab-price">15,000 – 30,000₮</div>
-      </div>
-      <div class="vehicle-tab" data-v="porter" onclick="selectVehicle('porter')">
-        <div class="vtab-icon">🚛</div>
-        <div class="vtab-name">Амжиргаа / Портер</div>
-        <div class="vtab-desc">Том хэмжээний бараа, ачаа</div>
-        <div class="vtab-price">60,000 – 100,000₮</div>
-      </div>
-    </div>
-
-    <div>
-      <div class="d-section-label" id="zoneSectionTitle">📍 Хотын доторх зай, бүс сонгоно уу</div>
-      <div class="zone-selector" id="zoneSelector">
-        <div class="zone-opt active" data-zone="near" onclick="selectZone('near')">
-          <div class="zo-title">Ойр бүс</div>
-          <div class="zo-sub">Төвийн дүүргүүд (0–5 км)</div>
-          <div class="zo-price" id="zonePriceNear">15,000 - 20,000₮</div>
-        </div>
-        <div class="zone-opt" data-zone="mid" onclick="selectZone('mid')">
-          <div class="zo-title">Дунд бүс</div>
-          <div class="zo-sub">БЗД, ХУД-ийн цаадах (5–12 км)</div>
-          <div class="zo-price" id="zonePriceMid">20,000 - 25,000₮</div>
-        </div>
-        <div class="zone-opt" data-zone="far" onclick="selectZone('far')">
-          <div class="zo-title">Алслагдсан бүс</div>
-          <div class="zo-sub">Яармаг, Нисэх, Толгойт (12+ км)</div>
-          <div class="zo-price" id="zonePriceFar">25,000 - 30,000₮</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="porterSection" style="display:none; margin-bottom: 24px;">
-      <div class="porter-note-box" style="background: rgba(244,123,32,0.08); border: 1px solid rgba(244,123,32,0.3); border-radius: 8px; padding: 14px 18px; font-size: 13.5px; color: var(--navy);">
-        💬 Том ачааны яг үнийг ачааны овор хэмжээ, зайнаас хамааруулан захиалга баталгаажуулах үед утсаар эцэслэн тохирно — <strong>80878936</strong>
-      </div>
-    </div>
-
-    <div class="d-amount-row">
-      <div class="d-field">
-        <label>Захиалгын нийт дүн (₮) — заавал биш</label>
-        <input type="number" id="orderAmount" placeholder="жш: 150,000" oninput="calcDelivery()" min="0">
-      </div>
-    </div>
-
-    <div class="delivery-result" id="deliveryResult">
-      <div class="d-result-item">
-        <div class="d-result-label">Хүргэлтийн хэрэгсэл</div>
-        <div class="d-result-value" id="resVehicle" style="font-size:18px">—</div>
-        <div class="d-result-note" id="resVehicleNote"></div>
-      </div>
-      <div class="d-result-item">
-        <div class="d-result-label">Хүргэлтийн төлбөр</div>
-        <div class="d-result-value orange" id="resFee">—</div>
-        <div class="d-result-note" id="resFeeNote">Зайнаас хамаарсан баримжаа</div>
-      </div>
-      <div class="d-result-item">
-        <div class="d-result-label">Нийт төлбөр</div>
-        <div class="d-result-value" id="resTotal">—</div>
-        <div class="d-result-note" id="resTotalNote">бараа + хүргэлт</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="about-section" id="about">
-  <div class="about-inner">
-    <div>
-      <div class="about-tag">Бидний тухай</div>
-      <h2 class="about-title">Цагаа алдалгүй<br><span>онлайнаар захиал</span></h2>
-      <p class="about-lead">
-        Бид 100 айл болон бусад барилгын дэлгүүрүүд рүү явж цаг алдах, замын түгжрэлд орох зэрэг асуудлуудыг шийдэж, танд барааг онлайнаар хүргэж өгөхийг зорьж буй платформ юм.
-      </p>
-      <div class="about-points">
-        <div class="about-point">
-          <div class="point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div class="point-text">
-            <h4>Цаг хэмнэнэ</h4>
-            <p>Дэлгүүр хэсэх, замын түгжрэлд цаг үрэхгүйгээр гэрээсээ захиалаад хүлээнэ.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <div class="point-text">
-            <h4>Хаана ч хүргэнэ</h4>
-            <p>Улаанбаатар хотод 24 цагийн дотор таны хаалганд хүргэж өгнө.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="point-text">
-            <h4>Баталгаат чанар</h4>
-            <p>Бид зөвхөн баталгаат, чанарын стандарт хангасан барилгын материал нийлүүлнэ.</p>
-          </div>
-        </div>
-        <div class="about-point">
-          <div class="point-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div class="point-text">
-            <h4>Тохиромжтой үнэ</h4>
-            <p>Дэлгүүрийн зардалгүй тул илүү хямд, өрсөлдөхүйц үнээр санал болгоно.</p>
-          </div>
-        </div>
-      </div>
-      <div class="about-cta" style="margin-top:28px">
-        <a href="tel:80878936" class="btn-call-about">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          80878936 дугаарт залгах
-        </a>
-      </div>
-    </div>
-
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">24ц</div>
-        <div class="stat-label">Улаанбаатарт хүргэлт</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">0₮</div>
-        <div class="stat-label">Замын түгжрэлд зарцуулах мөнгө</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Баталгаат чанар</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">7/7</div>
-        <div class="stat-label">Долоо хоногийн бүр ажиллана</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <img src="logo.png" alt="BarilgaPro Лого" class="footer-logo-img" onerror="this.style.display='none';">
-      <div class="footer-logo-name">BARILGA<span>PRO</span></div>
-      <div class="footer-tagline">Онлайн барилгын материалын дэлгүүр</div>
-      <p class="footer-desc">Монголын барилгын материалын найдвартай онлайн дэлгүүр. Баталгаат чанар, хурдан хүргэлт.</p>
-      <div class="footer-contact">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          80878936
-        </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Улаанбаатар хот
-        </div>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Мэдээлэл</h4>
-      <ul>
+  <nav>
+    <div class="nav-inner">
+      <ul class="nav-links">
+        <li><a href="#">Нүүр</a></li>
+        <li><a href="#">Бараа</a></li>
+        <li><a href="#">Брэнд</a></li>
         <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">Бидний тухай</a></li>
-        <li><a href="#">Нийтлэл</a></li>
-        <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+        <li><a href="#">Хүргэлт</a></li>
       </ul>
+      <div class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 7.5 7.5l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        80878936
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Үйлчилгээ</h4>
-      <ul>
-        <li><a href="#">Захиалга шалгах</a></li>
-        <li><a href="#">Хүргэлтийн нөхцөл</a></li>
-        <li><a href="#">Буцаалт</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Холбоо барих</h4>
-      <ul>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="tel:80878936">80878936</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 BarilgaPro — Бүх эрх хуулиар хамгаалагдсан</span>
-    <div class="social-links">
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-      <div class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
-    </div>
-  </div>
-</footer>
+  </nav>
 
-<script>
-  // ====== SEARCH ======
-  function handleSearch(val) {
-    const dd = document.getElementById('searchDropdown');
-    const q = val.trim().toLowerCase();
-    if (!q) { dd.classList.remove('show'); return; }
+  <div class="catalog-container">
+    <h2 class="section-title">Манай бүтээгдэхүүнүүд</h2>
+    <div class="products-grid" id="productsGrid">
 
-    const keys = Object.keys(products);
-    const results = keys.filter(k => {
-      const p = products[k];
-      return p.title.toLowerCase().includes(q) ||
-             p.desc.toLowerCase().includes(q) ||
-             (p.specs && p.specs.some(s => s.value.toLowerCase().includes(q)));
-    });
-
-    if (!results.length) {
-      dd.innerHTML = `<div class="search-empty">🔍 "${val}" гэсэн бараа олдсонгүй</div>`;
-    } else {
-      dd.innerHTML = results.map(k => {
-        const p = products[k];
-        const hi = p.title.replace(new RegExp(`(${q})`, 'gi'), '<span class="search-highlight">$1</span>');
-        return `<div class="search-result-item" onclick="closeSearch();openModal('${k}')">
-          <img class="search-thumb" src="${p.img}" alt="${p.title}" onerror="this.style.background='#eee'">
-          <div class="search-info">
-            <div class="search-name">${hi}</div>
-            <div class="search-price">${p.price.toLocaleString()} ₮ / ${p.unit}</div>
+      <div class="product-card" onclick="openModal('aibo')">
+        <div class="product-img-box">
+          <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png" alt="AIBO Sticker Remover" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500'">
+          <div class="view-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
+            Дэлгэрэнгүй
           </div>
-        </div>`;
-      }).join('');
-    }
-    dd.classList.add('show');
-  }
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">AIBO Шүршдэг будаг, цавуу арилгагч</h3>
+          <p class="product-desc">Бүх төрлийн будаг болон наалдсан цавууг металл, шил зэрэг гадаргууг гэмтээхгүйгээр хялбархан арилгах шүршигч.</p>
+          <div class="product-price-row">
+            <span class="product-price">10,000 ₮</span>
+            <button class="card-btn" onclick="event.stopPropagation();openModal('aibo')">Үзэх</button>
+          </div>
+        </div>
+      </div>
 
-  function closeSearch() {
-    document.getElementById('searchDropdown').classList.remove('show');
-    document.getElementById('searchInput').value = '';
-  }
+      <div class="product-card" onclick="openModal('siding')">
+        <div class="product-img-box">
+          <img src="https://raw.githubusercontent.com/todoo03/BarilgaPro/main/Siding_Facade.png" alt="Siding Facade" onerror="this.src='https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=500'">
+          <div class="view-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
+            Дэлгэрэнгүй
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Барилгын гадна фасадны Сайдинг хавтан</h3>
+          <p class="product-desc">Олон төрлийн загвар, өнгөний сонголттой, цаг агаарын эрс тэрс нөхцөлд тэсвэртэй фасадны материал.</p>
+          <div class="product-price-row">
+            <span class="product-price">26,000 ₮</span>
+            <button class="card-btn" onclick="event.stopPropagation();openModal('siding')">Үзэх</button>
+          </div>
+        </div>
+      </div>
 
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrap')) {
-      document.getElementById('searchDropdown').classList.remove('show');
-    }
-  });
+    </div>
+  </div>
 
-  // ====== DELIVERY CALCULATOR ======
-  let activeVehicle = 'ubcab';
-  let activeZone    = 'near';
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <img id="modalImg" src="" alt="" class="modal-img">
+      <div class="modal-body">
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-specs" id="modalSpecsWrap">
+          <h4>Үзүүлэлтүүд</h4>
+          <div class="specs-grid" id="modalSpecs"></div>
+        </div>
+        <div class="modal-sizes" id="modalSizesWrap">
+          <h4>Хэмжээ сонгох</h4>
+          <div class="size-options" id="modalSizes"></div>
+        </div>
+        <div class="modal-colors" id="modalColorsWrap">
+          <h4>Өнго сонгох</h4>
+          <div class="color-options" id="modalColors"></div>
+        </div>
+        <div class="modal-qty">
+          <h4>Тоо ширхэг</h4>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="qty-row">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input class="qty-num" id="qtyInput" type="number" value="1" min="1" oninput="updateTotal()">
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+            <span class="qty-unit" id="qtyUnit">ширхэг</span>
+          </div>
+        </div>
+        <div class="modal-total">
+          <span class="total-label">Нийт дүн</span>
+          <span class="total-price" id="modalTotal">0 ₮</span>
+        </div>
+        <div class="modal-actions">
+          <a href="tel:80878936" class="btn-order">Утсаар захиалах</a>
+          <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  const pricingData = {
-    ubcab: {
-      near: { min: 15000, max: 20000, label: "Ойр (Төв дүүрэг: 0-5км)" },
-      mid:  { min: 20000, max: 25000, label: "Дунд (БЗД, ХУД: 5-12км)" },
-      far:  { min: 25000, max: 30000, label: "Алс (Яармаг, Нисэх: 12+км)" }
-    },
-    porter: {
-      near: { min: 60000, max: 70000, label: "Ойр (Төв дүүрэг: 0-5км)" },
-      mid:  { min: 70000, max: 85000, label: "Дунд (БЗД, ХУД: 5-12км)" },
-      far:  { min: 85000, max: 100000, label: "Алс (Яармаг, Нисэх: 12+км)" }
-    }
-  };
+  <section class="delivery-section">
+    <div class="delivery-inner">
+      <div class="delivery-title">Хүргэлтийн тооцоолуур</div>
+      <div class="delivery-sub">Барааны овор хэмжээ болон хотын доторх зайнаас хамаарч хүргэлтийн төлбөр тооцогдоно</div>
+      <div class="vehicle-tabs" id="vehicleTabs">
+        <div class="vehicle-tab active" data-v="ubcab" onclick="selectVehicle('ubcab')">
+          <div class="vtab-icon">🚗</div>
+          <div class="vtab-name">UBCab / Жижиг машин</div>
+          <div class="vtab-price">15,000 – 30,000₮</div>
+        </div>
+        <div class="vehicle-tab" data-v="porter" onclick="selectVehicle('porter')">
+          <div class="vtab-icon">🚛</div>
+          <div class="vtab-name">Амжиргаа / Портер</div>
+          <div class="vtab-price">60,000 – 100,000₮</div>
+        </div>
+      </div>
+      <div>
+        <div class="d-section-label" id="zoneSectionTitle">📍 Хотын доторх зай, бүс сонгоно уу</div>
+        <div class="zone-selector" id="zoneSelector">
+          <div class="zone-opt active" data-zone="near" onclick="selectZone('near')">
+            <div class="zo-title">Ойр бүс</div>
+            <div class="zo-sub">Төвийн дүүргүүд (0–5 км)</div>
+            <div class="zo-price" id="zonePriceNear">15,000 - 20,000₮</div>
+          </div>
+          <div class="zone-opt" data-zone="mid" onclick="selectZone('mid')">
+            <div class="zo-title">Дунд бүс</div>
+            <div class="zo-sub">БЗД, ХУД (5–12 км)</div>
+            <div class="zo-price" id="zonePriceMid">20,000 - 25,000₮</div>
+          </div>
+          <div class="zone-opt" data-zone="far" onclick="selectZone('far')">
+            <div class="zo-title">Алслагдсан</div>
+            <div class="zo-sub">Яармаг, Нисэх (12+ км)</div>
+            <div class="zo-price" id="zonePriceFar">25,000 - 30,000₮</div>
+          </div>
+        </div>
+      </div>
+      <div id="porterSection" style="display:none; margin-bottom: 24px;">
+        <div style="background: rgba(244,123,32,0.08); border: 1px solid rgba(244,123,32,0.3); border-radius: 8px; padding: 14px 18px; font-size: 13.5px; color: var(--navy);">
+          💬 Портерийн үнийг ачааны овор хэмжээ, зайнаас хамааруулан утсаар эцэслэн тохирно — <strong>80878936</strong>
+        </div>
+      </div>
+      <div class="d-amount-row">
+        <div class="d-field">
+          <label>Захиалгын нийт дүн (₮)</label>
+          <input type="number" id="orderAmount" placeholder="жш: 150,000" oninput="calcDelivery()">
+        </div>
+      </div>
+      <div class="delivery-result" id="deliveryResult">
+        <div class="d-result-item">
+          <div class="d-result-label">Хэрэгсэл</div>
+          <div class="d-result-value" id="resVehicle">—</div>
+        </div>
+        <div class="d-result-item">
+          <div class="d-result-label">Хүргэлт</div>
+          <div class="d-result-value orange" id="resFee">—</div>
+        </div>
+        <div class="d-result-item">
+          <div class="d-result-label">Нийт дүн</div>
+          <div class="d-result-value" id="resTotal">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  function selectVehicle(v) {
-    activeVehicle = v;
-    document.querySelectorAll('.vehicle-tab').forEach(t => t.classList.toggle('active', t.dataset.v === v));
-    
-    const labelNear = document.getElementById('zonePriceNear');
-    const labelMid = document.getElementById('zonePriceMid');
-    const labelFar = document.getElementById('zonePriceFar');
-    const porterSection = document.getElementById('porterSection');
-    const zoneSectionTitle = document.getElementById('zoneSectionTitle');
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div>
+        <div class="about-tag">Бидний тухай</div>
+        <h2 class="about-title">Цагаа алдалгүй<br><span>онлайнаар захиал</span></h2>
+        <p class="about-lead">Бид 100 айл руу явж цаг алдах түгжрэх асуудлыг шийдэж, барилгын материалыг онлайнаар найдвартай хүргэж өгөх платформ юм.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">24ц</div><div class="stat-label">УБ Хүргэлт</div></div>
+        <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Баталгаат чанар</div></div>
+      </div>
+    </div>
+  </section>
 
-    if (v === 'ubcab') {
-      labelNear.textContent = "15,000 - 20,000₮";
-      labelMid.textContent  = "20,000 - 25,000₮";
-      labelFar.textContent  = "25,000 - 30,000₮";
-      porterSection.style.display = 'none';
-      zoneSectionTitle.textContent = "📍 Хотын доторх зай, бүс сонгоно уу";
-    } else {
-      labelNear.textContent = "60,000 - 70,000₮";
-      labelMid.textContent  = "70,000 - 85,000₮";
-      labelFar.textContent  = "85,000 - 100,000₮";
-      porterSection.style.display = 'block';
-      zoneSectionTitle.textContent = "📍 Хүргүүлэх бүсээ сонгоно уу (Үнийн баримжаа)";
-    }
-    
-    calcDelivery();
-  }
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <img src="logo.png" alt="BarilgaPro" class="footer-logo-img" onerror="this.style.display='none';">
+        <div class="footer-logo-name">BARILGA<span>PRO</span></div>
+        <p class="footer-desc">Барилгын материалын найдвартай онлайн дэлгүүр.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BarilgaPro — Бүх эрх хамгаалагдсан</span>
+    </div>
+  </footer>
 
-  function selectZone(z) {
-    activeZone = z;
-    document.querySelectorAll('.zone-opt').forEach(o => o.classList.toggle('active', o.dataset.zone === z));
-    calcDelivery();
-  }
-
-  function calcDelivery() {
-    const amount = parseFloat(document.getElementById('orderAmount').value) || 0;
-    const result = document.getElementById('deliveryResult');
-    
-    const currentPrice = pricingData[activeVehicle][activeZone];
-    const feeText = currentPrice.min.toLocaleString() + " - " + currentPrice.max.toLocaleString() + " ₮";
-
-    if (activeVehicle === 'ubcab') {
-      document.getElementById('resVehicle').textContent     = '🚗 UBCab / Суудлын машин';
-      document.getElementById('resVehicleNote').textContent = 'Жижиг, дунд овор хэмжээ';
-      document.getElementById('resFeeNote').textContent     = 'Хотоос хамаарсан тогтмол тариф';
-      
-      if (amount > 0) {
-        const totalMin = amount + currentPrice.min;
-        const totalMax = amount + currentPrice.max;
-        document.getElementById('resTotal').textContent     = totalMin.toLocaleString() + " - " + totalMax.toLocaleString() + " ₮";
-      } else {
-        document.getElementById('resTotal').textContent     = feeText;
+  <script>
+    const products = {
+      aibo: {
+        title: 'AIBO Шүршдэг будаг, цавуу арилгагч', price: 10000, unit: 'ширхэг',
+        img: 'https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png',
+        desc: 'Бүх төрлийн будаг болон цавууг металл, шил, мод гадаргуунаас хялбар арилгана.',
+        specs: [{ label: 'Хэмжээ', value: '500мл' }, { label: 'Брэнд', value: 'AIBO' }],
+        sizes: ['500мл'], colors: null
+      },
+      siding: {
+        title: 'Барилгын гадна фасадны Сайдинг хавтан', price: 26000, unit: 'хавтан',
+        img: 'https://raw.githubusercontent.com/todoo03/BarilgaPro/main/Siding_Facade.png',
+        desc: 'Цаг агаарын эрс тэрс нөхцөлд тэсвэртэй, гоёмсог фасадны материал.',
+        specs: [{ label: 'Хэмжээ', value: '3.8м × 38см' }],
+        sizes: ['3.8м × 38см'],
+        colors: [{ name: 'Саарал', hex: '#9E9E9E' }, { name: 'Кофе', hex: '#795548' }]
       }
-    } else {
-      document.getElementById('resVehicle').textContent     = 'DF Тээвэр / Портер';
-      document.getElementById('resVehicleNote').textContent = 'Амжиргаа цагаан эсвэл Портер';
-      document.getElementById('resFeeNote').textContent     = 'Утсаар баталгаажуулна';
-      
-      if (amount > 0) {
-        const totalMin = amount + currentPrice.min;
-        const totalMax = amount + currentPrice.max;
-        document.getElementById('resTotal').textContent     = totalMin.toLocaleString() + " - " + totalMax.toLocaleString() + " ₮";
-      } else {
-        document.getElementById('resTotal').textContent     = feeText;
+    };
+
+    let activeVehicle = 'ubcab';
+    let activeZone = 'near';
+    const pricingData = {
+      ubcab: { near: { min: 15000, max: 20000 }, mid: { min: 20000, max: 25000 }, far: { min: 25000, max: 30000 } },
+      porter: { near: { min: 60000, max: 70000 }, mid: { min: 70000, max: 85000 }, far: { min: 85000, max: 100000 } }
+    };
+
+    function handleSearch(val) {
+      const dd = document.getElementById('searchDropdown');
+      const q = val.trim().toLowerCase();
+      if (!q) { dd.classList.remove('show'); return; }
+      const keys = Object.keys(products).filter(k => products[k].title.toLowerCase().includes(q));
+      if (!keys.length) { dd.innerHTML = '<div class="search-empty">Олдсонгүй</div>'; }
+      else {
+        dd.innerHTML = keys.map(k => `<div class="search-result-item" onclick="document.getElementById('searchDropdown').classList.remove('show');openModal('${k}')"><img class="search-thumb" src="${products[k].img}"><div class="search-info"><div class="search-name">${products[k].title}</div><div class="search-price">${products[k].price.toLocaleString()} ₮</div></div></div>`).join('');
       }
+      dd.classList.add('show');
     }
 
-    document.getElementById('resFee').textContent = feeText;
-    result.classList.add('show');
-  }
+    document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').classList.remove('show'); });
 
-  calcDelivery();
-
-  const products = {
-    aibo: {
-      title: 'AIBO Шүршдэг будаг, цавуу арилгагч (Sticker Remover)',
-      price: 10000,
-      unit: 'ширхэг',
-      img: 'https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png',
-      desc: 'Бүх төрлийн будаг болон наалдсан цавууг металл, шил, мод зэрэг гадаргууг гэмтээхгүйгээр хялбархан уусгаж арилгах зориулалттай мэргэжлийн шүршигч. Гэр ахуй болон барилгын ажилд тохиромжтой.',
-      specs: [
-        { label: 'Хэмжээ', value: '500мл' },
-        { label: 'Брэнд', value: 'AIBO' },
-        { label: 'Зориулалт', value: 'Будаг, цавуу арилгах' },
-        { label: 'Хэрэглэх гадаргуу', value: 'Металл, шил, мод' },
-      ],
-      sizes: ['250мл', '500мл', '1Л'],
-      colors: null,
-    },
-    siding: {
-      title: 'Барилгын гадна фасадны Сайдинг (Siding) хавтан',
-      price: 26000,
-      unit: 'хавтан',
-      img: 'https://raw.githubusercontent.com/todoo03/BarilgaPro/main/Siding_Facade.png',
-      desc: 'Олон төрлийн загвар, өнгөний сонголттой, цаг агаарын эрс тэрс нөхцөлд тэсвэртэй, барилгын гадна талыг гоёмсог харагдуулах чанартай фасадны материал. Суурилуулахад хялбар, удаан эдэлгээтэй.',
-      specs: [
-        { label: 'Хэмжээ', value: '3.8м × 38см' },
-        { label: 'Талбай', value: '1.444 м²' },
-        { label: 'Материал', value: 'PVC / Металл' },
-        { label: 'Тэсвэрлэлт', value: 'UV хамгаалалттай' },
-      ],
-      sizes: ['3.8м × 38см', '3м × 20см'],
-      colors: [
-        { name: 'Цагаан', hex: '#F5F5F5' },
-        { name: 'Саарал', hex: '#9E9E9E' },
-        { name: 'Кофе', hex: '#795548' },
-        { name: 'Ногоон', hex: '#4CAF50' },
-        { name: 'Бежевый', hex: '#D7CCC8' },
-        { name: 'Хар', hex: '#212121' },
-      ],
-    },
-  };
-
-  let currentProduct = null;
-  let selectedSize = null;
-  let selectedColor = null;
-
-  function openModal(key) {
-    const p = products[key];
-    currentProduct = p;
-    selectedSize = p.sizes ? p.sizes[0] : null;
-    selectedColor = p.colors ? p.colors[0].name : null;
-
-    document.getElementById('modalImg').src = p.img;
-    document.getElementById('modalImg').alt = p.title;
-    document.getElementById('modalTitle').textContent = p.title;
-    document.getElementById('modalPrice').textContent = p.price.toLocaleString() + ' ₮';
-    document.getElementById('modalDesc').textContent = p.desc;
-    document.getElementById('qtyInput').value = 1;
-    document.getElementById('qtyUnit').textContent = p.unit;
-
-    const specsEl = document.getElementById('modalSpecs');
-    specsEl.innerHTML = p.specs.map(s =>
-      `<div class="spec-item"><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div>`
-    ).join('');
-
-    const sizesWrap = document.getElementById('modalSizesWrap');
-    const sizesEl = document.getElementById('modalSizes');
-    if (p.sizes && p.sizes.length) {
-      sizesWrap.style.display = '';
-      sizesEl.innerHTML = p.sizes.map((s, i) =>
-        `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this,'${s}')">${s}</button>`
-      ).join('');
-    } else {
-      sizesWrap.style.display = 'none';
+    function selectVehicle(v) {
+      activeVehicle = v;
+      document.querySelectorAll('.vehicle-tab').forEach(t => t.classList.toggle('active', t.dataset.v === v));
+      document.getElementById('porterSection').style.display = v === 'porter' ? 'block' : 'none';
+      
+      const ln = document.getElementById('zonePriceNear'), lm = document.getElementById('zonePriceMid'), lf = document.getElementById('zonePriceFar');
+      if (v === 'ubcab') { ln.textContent="15,000-20,000₮"; lm.textContent="20,000-25,000₮"; lf.textContent="25,000-30,000₮"; }
+      else { ln.textContent="60,000-70,000₮"; lm.textContent="70,000-85,000₮"; lf.textContent="85,000-100,000₮"; }
+      calcDelivery();
+    }
+    function selectZone(z) {
+      activeZone = z;
+      document.querySelectorAll('.zone-opt').forEach(o => o.classList.toggle('active', o.dataset.zone === z));
+      calcDelivery();
+    }
+    function calcDelivery() {
+      const amount = parseFloat(document.getElementById('orderAmount').value) || 0;
+      const cur = pricingData[activeVehicle][activeZone];
+      document.getElementById('resVehicle').textContent = activeVehicle === 'ubcab' ? '🚗 UBCab машин' : '🚛 Портер ачаа';
+      document.getElementById('resFee').textContent = `${cur.min.toLocaleString()}-${cur.max.toLocaleString()} ₮`;
+      document.getElementById('resTotal').textContent = amount ? `${(amount+cur.min).toLocaleString()}-${(amount+cur.max).toLocaleString()} ₮` : `${cur.min.toLocaleString()}-${cur.max.toLocaleString()} ₮`;
+      document.getElementById('deliveryResult').classList.add('show');
     }
 
-    const colorsWrap = document.getElementById('modalColorsWrap');
-    const colorsEl = document.getElementById('modalColors');
-    if (p.colors && p.colors.length) {
-      colorsWrap.style.display = '';
-      colorsEl.innerHTML = p.colors.map((c, i) =>
-        `<button class="color-btn ${i===0?'selected':''}" onclick="selectColor(this,'${c.name}')">
-          <span class="color-dot" style="background:${c.hex}"></span>${c.name}
-        </button>`
-      ).join('');
-    } else {
-      colorsWrap.style.display = 'none';
+    let currentProduct = null, selectedSize = null, selectedColor = null;
+    function openModal(key) {
+      const p = products[key]; currentProduct = p;
+      selectedSize = p.sizes ? p.sizes[0] : null; selectedColor = p.colors ? p.colors[0].name : null;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalPrice').textContent = p.price.toLocaleString() + ' ₮';
+      document.getElementById('modalDesc').textContent = p.desc;
+      document.getElementById('qtyInput').value = 1; document.getElementById('qtyUnit').textContent = p.unit;
+      
+      document.getElementById('modalSpecs').innerHTML = p.specs.map(s => `<div class="spec-item"><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div>`).join('');
+      document.getElementById('modalSizesWrap').style.display = p.sizes ? '' : 'none';
+      if(p.sizes) document.getElementById('modalSizes').innerHTML = p.sizes.map((s,i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this,'${s}')">${s}</button>`).join('');
+      document.getElementById('modalColorsWrap').style.display = p.colors ? '' : 'none';
+      if(p.colors) document.getElementById('modalColors').innerHTML = p.colors.map((c,i) => `<button class="color-btn ${i===0?'selected':''}" onclick="selectColor(this,'${c.name}')"><span class="color-dot" style="background:${c.hex}"></span>${c.name}</button>`).join('');
+      
+      updateTotal();
+      document.getElementById('modalOverlay').classList.add('open');
     }
-
-    updateWhatsApp();
-    updateTotal();
-
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  function selectSize(btn, val) {
-    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedSize = val;
-    updateWhatsApp();
-  }
-
-  function selectColor(btn, val) {
-    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedColor = val;
-    updateWhatsApp();
-  }
-
-  function changeQty(delta) {
-    const inp = document.getElementById('qtyInput');
-    const newVal = Math.max(1, parseInt(inp.value || 1) + delta);
-    inp.value = newVal;
-    updateTotal();
-    updateWhatsApp();
-  }
-
-  function updateTotal() {
-    if (!currentProduct) return;
-    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
-    const total = currentProduct.price * qty;
-    document.getElementById('modalTotal').textContent = total.toLocaleString() + ' ₮';
-    updateWhatsApp();
-  }
-
-  function updateWhatsApp() {
-    if (!currentProduct) return;
-    const qty = document.getElementById('qtyInput').value || 1;
-    let msg = `Сайн байна уу! "${currentProduct.title}" захиалмаар байна.\n`;
-    if (selectedSize) msg += `Хэмжээ: ${selectedSize}\n`;
-    if (selectedColor) msg += `Өнгө: ${selectedColor}\n`;
-    msg += `Тоо: ${qty} ${currentProduct.unit}\nНийт: ${(currentProduct.price * qty).toLocaleString()}₮`;
-    document.getElementById('whatsappBtn').href = `https://wa.me/97680878936?text=${encodeURIComponent(msg)}`;
-  }
-</script>
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+    function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+    function selectSize(btn, val) { document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); selectedSize = val; updateWhatsApp(); }
+    function selectColor(btn, val) { document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); selectedColor = val; updateWhatsApp(); }
+    function changeQty(d) { const inp = document.getElementById('qtyInput'); inp.value = Math.max(1, parseInt(inp.value || 1) + d); updateTotal(); }
+    function updateTotal() {
+      if (!currentProduct) return; const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+      document.getElementById('modalTotal').textContent = (currentProduct.price * qty).toLocaleString() + ' ₮';
+      updateWhatsApp();
+    }
+    function updateWhatsApp() {
+      if (!currentProduct) return; const qty = document.getElementById('qtyInput').value || 1;
+      let msg = `Сайн байна уу! "${currentProduct.title}" захиалмаар байна.\n`;
+      if(selectedSize) msg += `Хэмжээ: ${selectedSize}\n`; if(selectedColor) msg += `Өнгө: ${selectedColor}\n`;
+      msg += `Тоо: ${qty} ${currentProduct.unit}\nНийт: ${(currentProduct.price * qty).toLocaleString()}₮`;
+      document.getElementById('whatsappBtn').href = `https://wa.me/97680878936?text=${encodeURIComponent(msg)}`;
+    }
+    calcDelivery();
+  </script>
 </body>
 </html>
