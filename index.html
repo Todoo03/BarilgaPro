@@ -30,6 +30,10 @@
   header { background: var(--white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 16px rgba(30,45,78,0.10); }
   .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 74px; }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+  
+  /* ШИНЭ ЛОГОНЫ СТАЙЛ */
+  .logo-img { height: 50px; width: auto; object-fit: contain; }
+  
   .logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
   .logo-name span { color: var(--orange); }
   .logo-sub { font-size: 10px; color: var(--gray); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; display: block; }
@@ -205,6 +209,7 @@
   /* FOOTER */
   footer { background: var(--navy-dark); color: #8a95ae; padding: 48px 0 24px; }
   .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .footer-logo-img { height: 55px; width: auto; object-fit: contain; margin-bottom: 8px; }
   .footer-logo-name { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: white; margin-bottom: 4px; }
   .footer-logo-name span { color: var(--orange); }
   .footer-tagline { font-size: 11px; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px; }
@@ -327,19 +332,7 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
-      <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" rx="16" fill="#1E2D4E"/>
-        <rect x="44" y="4"  width="12" height="14" rx="3" fill="#F47B20"/>
-        <rect x="44" y="82" width="12" height="14" rx="3" fill="#F47B20"/>
-        <rect x="4"  y="44" width="14" height="12" rx="3" fill="#F47B20"/>
-        <rect x="82" y="44" width="14" height="12" rx="3" fill="#F47B20"/>
-        <rect x="26" y="36" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="50" y="36" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="36" y="51" width="20" height="11" rx="2" fill="#F47B20"/>
-        <rect x="20" y="51" width="12" height="11" rx="2" fill="#F47B20" opacity="0.6"/>
-        <rect x="60" y="51" width="16" height="11" rx="2" fill="#F47B20" opacity="0.6"/>
-        <path d="M35 68 L58 28 L70 52 Z" fill="white" opacity="0.85"/>
-      </svg>
+      <img src="logo.png" alt="BarilgaPro Лого" class="logo-img" onerror="this.src='https://raw.githubusercontent.com/todoo03/BarilgaPro/main/AIBO_Sticker_Remover.png'; this.style.opacity='0.2';">
       <div>
         <div class="logo-name">BARILGA<span>PRO</span></div>
         <span class="logo-sub">Онлайн барилгын материал</span>
@@ -642,6 +635,7 @@
 <footer>
   <div class="footer-inner">
     <div>
+      <img src="logo.png" alt="BarilgaPro Лого" class="footer-logo-img" onerror="this.style.display='none';">
       <div class="footer-logo-name">BARILGA<span>PRO</span></div>
       <div class="footer-tagline">Онлайн барилгын материалын дэлгүүр</div>
       <p class="footer-desc">Монголын барилгын материалын найдвартай онлайн дэлгүүр. Баталгаат чанар, хурдан хүргэлт.</p>
@@ -734,11 +728,10 @@
     }
   });
 
-  // ====== DELIVERY CALCULATOR (ШИНЭЧЛЭГДСЭН ЛОГИК) ======
+  // ====== DELIVERY CALCULATOR ======
   let activeVehicle = 'ubcab';
   let activeZone    = 'near';
 
-  // Машины төрлөөс хамаарсан үнийн интервалууд
   const pricingData = {
     ubcab: {
       near: { min: 15000, max: 20000, label: "Ойр (Төв дүүрэг: 0-5км)" },
@@ -822,7 +815,6 @@
     result.classList.add('show');
   }
 
-  // Автоматаар анхны үр дүнг тооцоолж харуулна
   calcDelivery();
 
   const products = {
@@ -883,13 +875,11 @@
     document.getElementById('qtyInput').value = 1;
     document.getElementById('qtyUnit').textContent = p.unit;
 
-    // Specs
     const specsEl = document.getElementById('modalSpecs');
     specsEl.innerHTML = p.specs.map(s =>
       `<div class="spec-item"><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div>`
     ).join('');
 
-    // Sizes
     const sizesWrap = document.getElementById('modalSizesWrap');
     const sizesEl = document.getElementById('modalSizes');
     if (p.sizes && p.sizes.length) {
@@ -901,7 +891,6 @@
       sizesWrap.style.display = 'none';
     }
 
-    // Colors
     const colorsWrap = document.getElementById('modalColorsWrap');
     const colorsEl = document.getElementById('modalColors');
     if (p.colors && p.colors.length) {
@@ -915,7 +904,6 @@
       colorsWrap.style.display = 'none';
     }
 
-    // WhatsApp message
     updateWhatsApp();
     updateTotal();
 
